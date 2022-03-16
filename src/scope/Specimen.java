@@ -1,12 +1,12 @@
 package scope;
 
 import java.util.Date;
+import java.util.Comparator;
 
 public class Specimen {
 	private String	name;
 	private int		numOfSightings;
 	private Date	latestDate;
-	private final String NL = System.getProperty("line.separator");
 	
 	Specimen(String name, int numOfSightings, Date latestDate){
 		this.name = name;
@@ -14,9 +14,12 @@ public class Specimen {
 		this.numOfSightings = numOfSightings;
 	}
 	
-	public String to_String() {
+	public String toString() {
 		String info = "";
-		info += this.name + NL + this.numOfSightings + NL + this.latestDate; 
+		info += "{ Nom: " + this.name;
+		info += ", Nombre Obs.: " + this.numOfSightings;
+		info += ", Data Obs. mès recent: " + this.latestDate.toString();
+		info += "}"; 
 		return info;
 	}
 	
@@ -26,8 +29,23 @@ public class Specimen {
 		return isGreater;
 	}
 	
-	public void addSpecimen(Specimen sp) {
-		//TODO
+	public boolean isSameName(Specimen sp) {
+		return this.name.compareTo(sp.name) == 0;
+	}
+	
+	public void update(Specimen sp) {
+		this.numOfSightings += sp.numOfSightings;
+		if(this.latestDate.before(sp.latestDate)) {
+			this.latestDate = sp.latestDate;
+		}
+	}
+	
+	public int compare(Specimen sp) {
+		return this.name.compareTo(sp.name);
+	}
+	
+	public boolean isBeforeDate(Date d) {
+		return this.latestDate.before(d);
 	}
 	
 }

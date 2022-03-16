@@ -9,20 +9,29 @@ public class Municipality {
 		this.numOfSightings = numOfSightings;
 	}
 	
-	public String to_String() {
+	public String toString() {
 		String info = "";
-		//TODO
+		info += "{ Nom: " + this.name;
+		info += ", Nombre Obs.: " + this.numOfSightings;
+		info += "}"; 
 		return info;
 	}
 	
-	public boolean isGreater(Municipality sp) {
+	public boolean isGreater(Municipality m) {
 		boolean isGreater = false;
 		//TODO
 		return isGreater;
 	}
 	
-	public void update(Municipality sp) {
-		//TODO
+	public boolean isSameName(Municipality m) {
+		return this.name.compareTo(m.name) == 0;
 	}
 	
+	public void update(Municipality m) {
+		this.numOfSightings += m.numOfSightings;
+	}
+	
+	public int compare(Municipality m) {
+		return this.name.compareTo(m.name);
+	}
 }
