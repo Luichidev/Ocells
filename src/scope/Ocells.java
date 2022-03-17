@@ -8,16 +8,14 @@ public class Ocells {
 		BufferedReader in;
 		SpecimenManager specimens = new SpecimenManager();
 		MunicipalityManager municipalities = new MunicipalityManager();
-				
-		boolean endOfFile = false;
+
 		String name;
 		String municipality;
 		int numOfSightings;
 		Date lastestDate;
-		
-		
+
 		try {
-			in = new BufferedReader(new FileReader("dades-5.txt"));			
+			in = new BufferedReader(new FileReader("dades-5.txt"));
 			String strng;
 			while ((strng = in.readLine()) != null) {
 				name = strng;
@@ -28,32 +26,32 @@ public class Ocells {
 				lastestDate.setYear(Integer.parseInt(arrayDate[0]) - 1900);
 				lastestDate.setMonth(Integer.parseInt(arrayDate[1]) - 1);
 				lastestDate.setDate(Integer.parseInt(arrayDate[2]));
-				
-				//Creem una especie i ho agegim al SpecimenManager
+
+				// Creem una especie i ho agegim al SpecimenManager
 				Specimen newSpecimen = new Specimen(name, numOfSightings, lastestDate);
 				specimens.addSpecimen(newSpecimen);
-			
-				//Creem un municipi i ho afegim al MunicipalityManager
+
+				// Creem un municipi i ho afegim al MunicipalityManager
 				Municipality newMunicipality = new Municipality(municipality, numOfSightings);
 				municipalities.addMunicipality(newMunicipality);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		/*
-		System.out.println("Totes les espècies observades són:");
-		System.out.println(specimens);
-		System.out.println("Tots els municipis amb espècies observades són:");
-		System.out.println(municipalities);
-		*/
-		
+		 * System.out.println("Totes les espï¿½cies observades sï¿½n:");
+		 * System.out.println(specimens);
+		 * System.out.println("Tots els municipis amb espï¿½cies observades sï¿½n:");
+		 * System.out.println(municipalities);
+		 */
+
 		Date newDate = new Date(119, 1, 15);
 		SpecimenManager specimens_previous = specimens.removePreviousThanDate(newDate);
-		System.out.println("Totes les espècies observades amb data prèvia a date:");
+		System.out.println("Totes les espÃ¨cies observades amb data prï¿½via a date:");
 		System.out.println(specimens_previous.toString());
-		System.out.println("Totes les espècies observades amb data posterior a date:");
+		System.out.println("Totes les espÃ¨cies observades amb data posterior a date:");
 		System.out.println(specimens.toString());
-		
+
 	}
 }
